@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% from "forms.html" import input %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+    <!-- { { s u p e r ( )  } } -->
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-danger">
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if posts %}
+        {% for post in posts %}
+        
+        <div class="border p-3 mb-3">
+            <img class="img-fluid rounded-circle border m-2" width="70px" src="{{ url_for('static', filename='img/default.jpg') }}"  alt="الناشر" />
+            
+            <span class="text-secondary">بواسطة {{ post[2] }}</span>
+            <h3><a class="text-dark" href="#">{{ post[0]|upper }}</a></h3>
+            <p>{{ post[1] }}</p>
+            <small>نشر بتاريخ  {{ post[3] }}</small>
+        </div>
+        {% endfor %}
+    {% else %}
+    <div class="border p-3 mb-3">No posts here</div>
+    {% endif %}
+
+{% endblock %}
